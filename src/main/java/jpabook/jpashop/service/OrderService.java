@@ -9,8 +9,11 @@ import jpabook.jpashop.repository.ItemRepository;
 import jpabook.jpashop.repository.MemberRepository;
 import jpabook.jpashop.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -44,4 +47,21 @@ public class OrderService {
 
         return order.getId();
     }
+
+    /**
+     * 주문 취소
+     */
+    @Transactional
+    public void cancelOrder(Long orderId) {
+        //주문 엔티티 조회
+        Order order = orderRepository.findOne(orderId);
+        //주문 취소
+        order.cancel();
+    }
+
+    //검색
+//    public List<Order> findOrders(OrderSearch orderSearch) {
+//        return orderRepository.findAll(orderSearch);
+//    }
+
 }
