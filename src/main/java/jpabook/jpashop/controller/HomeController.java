@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class HomeController {
 
-    @RequestMapping("/home")
+    @RequestMapping({"/home","/"})
     public String home() {
         log.info("home controller");
         return "home";

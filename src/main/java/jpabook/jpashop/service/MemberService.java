@@ -46,5 +46,9 @@ public class MemberService {
     }
 
 
-
+    @Transactional
+    public void update(Long id, String name) {
+        Member member = memberRepository.fineOne(id);
+        member.setName(name);
+    }
 }
